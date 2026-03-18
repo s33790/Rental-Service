@@ -8,7 +8,4 @@ public class Employee : Person
     {
         this.salary = salary;
     }
-
-    
-    
 }
