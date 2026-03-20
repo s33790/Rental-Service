@@ -3,11 +3,11 @@
 public class Student : Person
 {
     private string indeks;
-    private int year;
+    private int yearOfStart;
     
-    public Student(string firstName, string lastName, DateTime dateOfBirth, string indeks, int year) : base(firstName, lastName, dateOfBirth)
+    public Student(string firstName, string lastName, string dateOfBirth, string indeks, int yearOfStart) : base(firstName, lastName, dateOfBirth)
     {
         this.indeks = indeks;
-        this.year = year;
+        this.yearOfStart = yearOfStart;
     }
 }

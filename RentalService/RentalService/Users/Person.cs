@@ -6,9 +6,9 @@ public class Person
     private int idUser { get; set; }
     private string firstName { get; set; }
     private string lastName { get; set; }
-    private DateTime dateOfBirth { get; set; }
+    private string dateOfBirth { get; set; }
 
-    public Person(string firstName, string lastName,  DateTime dateOfBirth)
+    public Person(string firstName, string lastName,  string dateOfBirth)
     {
         idUser = newId++;
         this.firstName = firstName;

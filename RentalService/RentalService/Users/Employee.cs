@@ -4,7 +4,7 @@ public class Employee : Person
 {
     private int salary { get; set; }
     
-    public Employee(string firstName, string lastName, DateTime dateOfBirth, int salary) : base(firstName, lastName, dateOfBirth)
+    public Employee(string firstName, string lastName, string dateOfBirth, int salary) : base(firstName, lastName, dateOfBirth)
     {
         this.salary = salary;
     }
