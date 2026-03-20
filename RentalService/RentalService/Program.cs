@@ -1,8 +1,10 @@
 ﻿
+using RentalService;
 using RentalService.Service;
 using RentalService.Users;
 
-UserRegistry registry = new UserRegistry();
+UserRegistry userRegistry = new UserRegistry();
+DeviceRegistry deviceRegistry = new DeviceRegistry();
 
 while (true)
 {
@@ -29,7 +31,16 @@ while (true)
     switch (choice)
     {
         case 1:
-            addUserMenu(registry);
+            AddUserMenu(userRegistry);
+            break;
+        case 2:
+            AddDeviceMenu(deviceRegistry);
+            break;
+        case 3:
+            deviceRegistry.DisplayAllDevices();
+            break;
+        case 4:
+            deviceRegistry.DisplayAvailableDevices();
             break;
         
         
@@ -39,12 +50,12 @@ while (true)
     
 }
 
-void addUserMenu(UserRegistry registry)
+void AddUserMenu(UserRegistry registry)
 {
     Console.WriteLine("firstname: ");
-    var firstName = Console.ReadLine();
+    var firstName = Console.ReadLine().ToUpper();
     Console.WriteLine("lastname: ");
-    var lastName = Console.ReadLine();
+    var lastName = Console.ReadLine().ToUpper();
     Console.WriteLine("date of birth(yyyy-mm-dd): ");
     var dateOfBirth = Console.ReadLine();
     Console.WriteLine("Type: 1. Student | 2. Employee");
@@ -53,7 +64,7 @@ void addUserMenu(UserRegistry registry)
     if (choosenType == 1)
     {
         Console.WriteLine("indeks: ");
-        var indeks = Console.ReadLine();
+        var indeks = Console.ReadLine().ToLower();
         Console.WriteLine("year of starting studies:");
         int yearOfStart = int.Parse(Console.ReadLine());
         registry.AddUser(new Student(firstName, lastName, dateOfBirth, indeks, yearOfStart));
@@ -62,5 +73,58 @@ void addUserMenu(UserRegistry registry)
         Console.WriteLine("salary: ");
         var indeks = int.Parse(Console.ReadLine());
         registry.AddUser(new Employee(firstName, lastName, dateOfBirth, indeks));
+    }
+    else
+    {
+        Console.WriteLine("invalid choice");
+    }
+}
+
+void AddDeviceMenu(DeviceRegistry registry){
+    Console.WriteLine("manufacturer: ");
+    var manufacturer = Console.ReadLine().ToUpper();
+    Console.WriteLine("EAN: ");
+    var EAN = Console.ReadLine();
+    Console.WriteLine("Available: (true/false)");
+    bool choosenAvailability = bool.Parse(Console.ReadLine());
+    Console.WriteLine("Choose type: 1. Laptop | 2. Projector | 3. Camera:");
+    int choosenType = int.Parse(Console.ReadLine());
+
+    if (choosenType == 1)
+    {
+        Console.WriteLine("processor: ");
+        var processor = Console.ReadLine();
+        Console.WriteLine("RAM: ");
+        var ram = int.Parse(Console.ReadLine());
+        Console.WriteLine("storage size: ");
+        var storageSize = int.Parse(Console.ReadLine());
+        Console.WriteLine("Operating system: ");
+        var operatingSystem = Console.ReadLine().ToUpper();
+        
+        registry.AddDevice(new Laptop(manufacturer, EAN, choosenAvailability, processor, ram, storageSize, operatingSystem));
+    } else if (choosenType == 2)
+    {
+        Console.WriteLine("resolution: ");
+        var resolution = Console.ReadLine();
+        Console.WriteLine("Brightness: ");
+        var brightness = int.Parse(Console.ReadLine());
+        Console.WriteLine("Speaker: (true/false)");
+        bool hasSpeaker = bool.Parse(Console.ReadLine());
+        
+        registry.AddDevice(new Projector(manufacturer, EAN, choosenAvailability, resolution,brightness, hasSpeaker));
+    } else if (choosenType == 3)
+    {
+        Console.WriteLine("Resolution: ");
+        var resolution = Console.ReadLine();
+        Console.WriteLine("Frame rate: ");
+        var frameRate = int.Parse(Console.ReadLine());
+        Console.WriteLine("Speaker: (true/false)");
+        bool hasSpeaker = bool.Parse(Console.ReadLine());
+        
+        registry.AddDevice(new Camera(manufacturer, EAN, choosenAvailability, resolution, frameRate, hasSpeaker));
+    }
+    else
+    {
+        Console.WriteLine("invalid choice");
     }
 }
