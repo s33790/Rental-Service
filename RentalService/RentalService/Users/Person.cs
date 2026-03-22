@@ -3,7 +3,7 @@
 public class Person
 {
     private static int newId = 1; 
-    private int idUser { get; set; }
+    public int idUser { get; set; }
     private string firstName { get; set; }
     private string lastName { get; set; }
     private string dateOfBirth { get; set; }
@@ -14,5 +14,15 @@ public class Person
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public virtual int GetMaxRentals()
+    {
+        return 0;
+    }
+
+    public override string ToString()
+    {
+        return firstName + " " + lastName;
     }
 }

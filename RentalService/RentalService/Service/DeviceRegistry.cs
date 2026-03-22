@@ -2,22 +2,22 @@
 
 public class DeviceRegistry
 {
-    private List <Devices> _devices = new List<Devices>();
+    private List <Devices> devices = new List<Devices>();
     
     public void AddDevice(Devices device)
     {
-        _devices.Add(device);
+        devices.Add(device);
         Console.WriteLine("Device added correctly");
     }
     
     public void DisplayAllDevices()
     {
-        if (_devices.Count == 0)
+        if (devices.Count == 0)
         {
             Console.WriteLine("No devices found");
         }
         
-        foreach (Devices device in _devices)
+        foreach (Devices device in devices)
         {
             Console.WriteLine(device);
         }
@@ -25,18 +25,22 @@ public class DeviceRegistry
     
     public void DisplayAvailableDevices()
     {
-        if (_devices.Count == 0)
+        var available = devices.Where(d => d.GetAvailable()).ToList();
+
+        if (!available.Any())
         {
-            Console.WriteLine("No devices found");
+            Console.WriteLine("No available devices found.");
+            return;
         }
         
-        foreach (Devices device in _devices)
+        foreach (var device in available)
         {
-            if (device.GetAvailable() == true)
-            {
-                Console.WriteLine(device);
-
-            }
+            Console.WriteLine(device);
         }
+    }
+
+    public Devices GetDeviceById(int deviceId)
+    {
+        return devices.FirstOrDefault(d => d.Id == deviceId);
     }
 }

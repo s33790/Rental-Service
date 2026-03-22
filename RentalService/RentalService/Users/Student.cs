@@ -10,4 +10,9 @@ public class Student : Person
         this.indeks = indeks;
         this.yearOfStart = yearOfStart;
     }
+    
+    public override int GetMaxRentals()
+    {
+        return 2;
+    }
 }

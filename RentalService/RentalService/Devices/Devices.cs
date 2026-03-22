@@ -2,8 +2,8 @@
 
 public class Devices
 {
-    private static int newId = 1; //zmienic na generowanie
-    private int Id { get; set; }
+    private static int newId = 1; 
+    public int Id { get; set; }
     private string manufacturer { get; set; }
     private string EAN { get; set; }
     private  bool available { get; set; }
@@ -28,5 +28,21 @@ public class Devices
     public bool GetAvailable() 
     {
         return this.available;
+    }
+    
+    public void SetAvailable(bool status)
+    {
+        this.available = status;
+    }
+
+    public void SetIsUnderService(bool status)
+    {
+        this.isUnderService = status;
+        this.available = !status;
+    }
+    
+    public bool GetIsUnderService()
+    {
+        return this.isUnderService;
     }
 }

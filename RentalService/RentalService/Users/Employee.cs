@@ -8,4 +8,9 @@ public class Employee : Person
     {
         this.salary = salary;
     }
+    
+    public override int GetMaxRentals()
+    {
+        return 5;
+    }
 }
