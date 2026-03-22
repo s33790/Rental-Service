@@ -59,6 +59,7 @@ public class MenuService
                     DisplayUserRentalsMenu(userRegistry, rentalManager);
                     break;
                 case 9:
+                    rentalManager.DisplayOvershootedRentals();
                     break;
                 case 10:
                     Console.WriteLine("All USERS:");

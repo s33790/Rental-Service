@@ -84,6 +84,30 @@ public class RentalManager
                 Console.WriteLine(rental.ToString());
             }
         }
+    }
 
+    public void DisplayOvershootedRentals()
+    {
+        DateTime now = DateTime.Now;
+        
+        var delayedRentals = activeRentals.Where(rental => !rental.rentalEndDate.HasValue && rental.getRentalEndDate() < now).ToList();
+
+        if (delayedRentals.Count == 0)
+        {
+            Console.WriteLine("Every rentals are on time!");
+            return;
+        }
+
+        Console.WriteLine("Delayed rentals: ");
+        foreach (var rental in delayedRentals)
+        {
+            DateTime deadline = rental.getRentalEndDate();
+            
+            rental.rentalEndDate = now;
+            double currentPenalty = rental.CalculatePenalty(5.0);
+            rental.rentalEndDate = null;
+
+            Console.WriteLine($"User ID: {rental.person.idUser} | Deadline: {deadline:yyyy-MM-dd} | Current Penalty: {currentPenalty} USD");
+        }
     }
 }
