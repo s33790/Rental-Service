@@ -5,15 +5,15 @@ namespace RentalService.Service;
 public class Rental
 {
     public Person person { get; set; }
-    public Devices device  { get; set; }
+    public Device Device  { get; set; }
     public DateTime rentalDate { get; set; }
     public int PlannedRentalInDays { get; set; }
     public DateTime? rentalEndDate { get; set; }
     
-    public Rental (Person person, Devices device, DateTime rentalDate, int plannedRentalInDays)
+    public Rental (Person person, Device device, DateTime rentalDate, int plannedRentalInDays)
     {
         this.person = person;
-        this.device = device;
+        this.Device = device;
         this.rentalDate = rentalDate;
         this.PlannedRentalInDays = plannedRentalInDays;
         this.rentalEndDate = null;
@@ -65,6 +65,6 @@ public class Rental
             status = "W trakcie wypożyczenia";
         }
         
-        return $"Rent info: from {rentalDate} | for: {PlannedRentalInDays} days |  {device} |  {status}";
+        return $"Rent info: from {rentalDate} | for: {PlannedRentalInDays} days |  {Device} |  {status}";
     }
 }

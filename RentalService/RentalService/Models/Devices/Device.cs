@@ -1,6 +1,6 @@
 ﻿namespace RentalService;
 
-public class Devices
+public class Device
 {
     private static int newId = 1; 
     public int Id { get; set; }
@@ -9,7 +9,7 @@ public class Devices
     private  bool available { get; set; }
     private bool isUnderService { get; set; }
 
-    public Devices(string manufacturer, string EAN, bool available)
+    public Device(string manufacturer, string EAN, bool available)
     {
         Id = newId++;
         this.manufacturer = manufacturer;

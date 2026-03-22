@@ -1,6 +1,6 @@
 ﻿namespace RentalService;
 
-public class Projector : Devices
+public class Projector : Device
 {
     private string resolution { get; set; }
     private int brightness { get; set; }

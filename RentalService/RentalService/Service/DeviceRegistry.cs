@@ -2,9 +2,9 @@
 
 public class DeviceRegistry
 {
-    private List <Devices> devices = new List<Devices>();
+    private List <Device> devices = new List<Device>();
     
-    public void AddDevice(Devices device)
+    public void AddDevice(Device device)
     {
         devices.Add(device);
         Console.WriteLine("Device added correctly");
@@ -17,7 +17,7 @@ public class DeviceRegistry
             Console.WriteLine("No devices found");
         }
         
-        foreach (Devices device in devices)
+        foreach (Device device in devices)
         {
             Console.WriteLine(device);
         }
@@ -39,7 +39,7 @@ public class DeviceRegistry
         }
     }
 
-    public Devices GetDeviceById(int deviceId)
+    public Device GetDeviceById(int deviceId)
     {
         return devices.FirstOrDefault(d => d.Id == deviceId);
     }

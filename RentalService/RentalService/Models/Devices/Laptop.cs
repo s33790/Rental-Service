@@ -1,6 +1,6 @@
 ﻿namespace RentalService;
 
-public class Laptop : Devices
+public class Laptop : Device
 {
     private string processor { get; set; }
     private int RAM { get; set; }

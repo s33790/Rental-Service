@@ -6,7 +6,7 @@ public class RentalManager
 {
     private List<Rental> activeRentals = new List<Rental>();
     
-    public void rent(Person user, Devices device, int durationDays)
+    public void rent(Person user, Device device, int durationDays)
     {
         if (user == null || device == null)
         {
@@ -45,14 +45,14 @@ public class RentalManager
         Console.WriteLine("Device rented succesfully");
     }
 
-    public void returnDevice(Person user, Devices device)
+    public void returnDevice(Person user, Device device)
     {
-        var rental = activeRentals.FirstOrDefault(rental => rental.person == user && rental.device == device && !rental.rentalEndDate.HasValue);
+        var rental = activeRentals.FirstOrDefault(rental => rental.person == user && rental.Device == device && !rental.rentalEndDate.HasValue);
 
         if (rental != null)
         {
             rental.rentalEndDate = DateTime.Now;
-            rental.device.SetAvailable(true);
+            rental.Device.SetAvailable(true);
             Console.WriteLine("Device returned succesfully");
             
             if (!rental.isReturnedOnTime())

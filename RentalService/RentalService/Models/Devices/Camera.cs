@@ -1,6 +1,6 @@
 ﻿namespace RentalService;
 
-public class Camera : Devices
+public class Camera : Device
 {
     private string resolution { get; set; }
     private int frameRate { get; set; }
