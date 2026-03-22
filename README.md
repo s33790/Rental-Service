@@ -10,11 +10,13 @@ Models - zawierający klasy reprezentujące sprzęt oraz użytkowników.
 
 UI - zawierający interfejs użytkownika odpowiedzialny za komunikacje w konsoli.
 
-Service - zawiera całą logikę serwisową(rejestry, manager wypożyczeń, walidacje, że dane urządzenie/user istnieje). 
+Service - zawiera całą logikę serwisową(rejestry, manager wypożyczeń, walidacje, że dane urządzenie/user istnieje).
 
 
 
 Instrukcja uruchomienia:
+
+
 0. EXIT
 
 1\. Dodanie nowego użytkownika.
@@ -36,6 +38,7 @@ Instrukcja uruchomienia:
 9\. Wyświetlenie listy przeterminowanych wypożyczeń.
 
 10\. Wygenerowanie krótkiego raportu podsumowującego stan wypożyczalni
+
+
 Dalsze kroki dla poszczególnych modułów według tego co podaje program w konsoli.
- 
 
