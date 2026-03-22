@@ -71,6 +71,28 @@ public class MenuService
         Console.WriteLine($"Your choice: {choice}");
         }
     }
+    
+    public int ReadInt(String message)
+    {
+        int result;
+        Console.WriteLine(message);
+        while (!int.TryParse(Console.ReadLine(), out result))
+        {
+            Console.WriteLine("Invalid input");
+        }
+        return result;
+    }
+
+    public bool ReadBool(String message)
+    {
+        bool result;
+        Console.WriteLine(message);
+        while (!bool.TryParse(Console.ReadLine(), out result))
+        {
+            Console.WriteLine("Invalid input[true/false]");
+        }
+        return result;
+    }
 
 void AddUserMenu(UserRegistry registry)
     {
@@ -80,21 +102,18 @@ void AddUserMenu(UserRegistry registry)
         var lastName = Console.ReadLine().ToUpper();
         Console.WriteLine("date of birth(yyyy-mm-dd): ");
         var dateOfBirth = Console.ReadLine();
-        Console.WriteLine("Type: 1. Student | 2. Employee");
-        int choosenType = int.Parse(Console.ReadLine());
+        int choosenType = ReadInt("Type: 1. Student | 2. Employee");
 
         if (choosenType == 1)
         {
             Console.WriteLine("indeks: ");
             var indeks = Console.ReadLine().ToLower();
-            Console.WriteLine("year of starting studies:");
-            int yearOfStart = int.Parse(Console.ReadLine());
+            int yearOfStart = ReadInt("year of starting studies:");
             registry.AddUser(new Student(firstName, lastName, dateOfBirth, indeks, yearOfStart));
         }
         else if (choosenType == 2)
         {
-            Console.WriteLine("salary: ");
-            var indeks = int.Parse(Console.ReadLine());
+            var indeks = ReadInt("salary: ");
             registry.AddUser(new Employee(firstName, lastName, dateOfBirth, indeks));
         }
         else
@@ -109,19 +128,15 @@ void AddUserMenu(UserRegistry registry)
         var manufacturer = Console.ReadLine().ToUpper();
         Console.WriteLine("EAN: ");
         var EAN = Console.ReadLine();
-        Console.WriteLine("Available: (true/false)");
-        bool choosenAvailability = bool.Parse(Console.ReadLine());
-        Console.WriteLine("Choose type: 1. Laptop | 2. Projector | 3. Camera:");
-        int choosenType = int.Parse(Console.ReadLine());
+        bool choosenAvailability = ReadBool("Available: (true/false)");
+        int choosenType = ReadInt("Choose type: 1. Laptop | 2. Projector | 3. Camera:");
 
         if (choosenType == 1)
         {
             Console.WriteLine("processor: ");
             var processor = Console.ReadLine();
-            Console.WriteLine("RAM: ");
-            var ram = int.Parse(Console.ReadLine());
-            Console.WriteLine("storage size: ");
-            var storageSize = int.Parse(Console.ReadLine());
+            var ram = ReadInt("RAM: ");
+            var storageSize = ReadInt("Storage size: ");
             Console.WriteLine("Operating system: ");
             var operatingSystem = Console.ReadLine().ToUpper();
 
@@ -132,10 +147,8 @@ void AddUserMenu(UserRegistry registry)
         {
             Console.WriteLine("resolution: ");
             var resolution = Console.ReadLine();
-            Console.WriteLine("Brightness: ");
-            var brightness = int.Parse(Console.ReadLine());
-            Console.WriteLine("Speaker: (true/false)");
-            bool hasSpeaker = bool.Parse(Console.ReadLine());
+            var brightness = ReadInt("Brightness: ");
+            bool hasSpeaker = ReadBool("Speaker: (true/false)");
 
             registry.AddDevice(
                 new Projector(manufacturer, EAN, choosenAvailability, resolution, brightness, hasSpeaker));
@@ -144,10 +157,8 @@ void AddUserMenu(UserRegistry registry)
         {
             Console.WriteLine("Resolution: ");
             var resolution = Console.ReadLine();
-            Console.WriteLine("Frame rate: ");
-            var frameRate = int.Parse(Console.ReadLine());
-            Console.WriteLine("Speaker: (true/false)");
-            bool hasSpeaker = bool.Parse(Console.ReadLine());
+            var frameRate = ReadInt("Frame rate: ");
+            bool hasSpeaker = ReadBool("Speaker: (true/false)");
 
             registry.AddDevice(new Camera(manufacturer, EAN, choosenAvailability, resolution, frameRate, hasSpeaker));
         }
@@ -159,8 +170,7 @@ void AddUserMenu(UserRegistry registry)
 
     void RentDeviceMenu(UserRegistry user, DeviceRegistry device, RentalManager rentalManager)
     {
-        Console.WriteLine("Enter user ID:");
-        int userId = int.Parse(Console.ReadLine());
+        int userId = ReadInt("Enter user ID:");
         var checkUser = user.GetUserById(userId);
 
         if (checkUser == null)
@@ -168,8 +178,7 @@ void AddUserMenu(UserRegistry registry)
             Console.WriteLine("User not found");
         }
 
-        Console.WriteLine("Enter device ID:");
-        int deviceId = int.Parse(Console.ReadLine());
+        int deviceId = ReadInt("Enter device ID:");
         var checkDevice = device.GetDeviceById(deviceId);
 
         if (checkDevice == null)
@@ -178,16 +187,14 @@ void AddUserMenu(UserRegistry registry)
             return;
         }
 
-        Console.WriteLine("For how many days?: ");
-        int durationDays = int.Parse(Console.ReadLine());
+        int durationDays = ReadInt("For how many days?: ");
 
         rentalManager.rent(checkUser, checkDevice, durationDays);
     }
 
     void DisplayUserRentalsMenu(UserRegistry user, RentalManager rentalManager)
     {
-        Console.WriteLine("Enter user ID:");
-        int userId = int.Parse(Console.ReadLine());
+        int userId = ReadInt("Enter user ID:");
 
         var checkUser = user.GetUserById(userId);
         if (checkUser == null)
@@ -201,8 +208,7 @@ void AddUserMenu(UserRegistry registry)
 
     void ReturnDeviceMenu(UserRegistry user, DeviceRegistry device, RentalManager rentalManager)
     {
-        Console.WriteLine("Enter user ID:");
-        int userId = int.Parse(Console.ReadLine());
+        int userId = ReadInt("Enter user ID:");
 
         var checkUser = user.GetUserById(userId);
         if (checkUser == null)
@@ -211,8 +217,7 @@ void AddUserMenu(UserRegistry registry)
             return;
         }
 
-        Console.WriteLine("Enter device ID:");
-        int deviceId = int.Parse(Console.ReadLine());
+        int deviceId = ReadInt("Enter device ID:");
         var checkDevice = device.GetDeviceById(deviceId);
 
         if (checkDevice == null)
@@ -226,8 +231,7 @@ void AddUserMenu(UserRegistry registry)
 
     void setServiceStatus(DeviceRegistry deviceRegistry)
     {
-        Console.WriteLine("Enter device ID:");
-        int deviceId = int.Parse(Console.ReadLine());
+        int deviceId = ReadInt("Enter device ID:");
         
         var device = deviceRegistry.GetDeviceById(deviceId);
         if (device == null)
@@ -236,14 +240,13 @@ void AddUserMenu(UserRegistry registry)
             return;
         }
 
-        if (!device.GetAvailable() &&  !device.GetIsUnderService())
+        if (!device.GetAvailable() && !device.GetIsUnderService())
         {
             Console.WriteLine("Service not available. Device currently RENTED");
             return;
         }
 
-        Console.WriteLine("1 Sent to service | 2. Back from service");
-        int choice = int.Parse(Console.ReadLine());
+        int choice = ReadInt("1 Sent to service | 2. Back from service");
         
         if (choice == 1)
         {

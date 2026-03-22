@@ -15,7 +15,7 @@ public class Devices
         this.manufacturer = manufacturer;
         this.EAN = EAN;
         this.available = available;
-        this.isUnderService = false;
+        isUnderService = false;
     }
 
     public override string ToString()
@@ -27,22 +27,22 @@ public class Devices
     
     public bool GetAvailable() 
     {
-        return this.available;
+        return available;
     }
     
     public void SetAvailable(bool status)
     {
-        this.available = status;
+        available = status;
     }
 
     public void SetIsUnderService(bool status)
     {
-        this.isUnderService = status;
-        this.available = !status;
+        isUnderService = status;
+        available = !status;
     }
     
     public bool GetIsUnderService()
     {
-        return this.isUnderService;
+        return isUnderService;
     }
 }
